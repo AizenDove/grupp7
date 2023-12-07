@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/WxTools/Example/Scenes/ExampleArduino.unity
+- path: Assets/Scenes/Chelsea.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
