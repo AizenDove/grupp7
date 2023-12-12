@@ -50,7 +50,7 @@ void setup()
   digitalWrite(LED_BUILTIN, LOW);
   
   // initialize serial communications at 115200 bps:
-  Serial.begin(115200);
+  Serial.begin(9600);
 
   // wait for serial port to connect. Needed for native USB
   while (!Serial) 

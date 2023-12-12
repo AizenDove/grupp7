@@ -19,6 +19,8 @@ namespace WxTools.IO
         /// </summary>
         [SerializeField]
         protected string dataReadPrefix = "";
+        [SerializeField]
+        protected string[] dataReadPrefix_array = {"", "", "", "", "" };
 
         void Awake()
         {
@@ -70,6 +72,44 @@ namespace WxTools.IO
                // data = data.Substring(2, data.Length - 2); // hack: remove the two starting chars
                 ParseData(data);
             }
+            float[] ratios = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
+
+            for(int i = 0; i < ratios.Length; i++)
+            {
+
+                if (dataReadPrefix_array[i] != string.Empty) // prefix defined listen to just that prefix
+                {
+                    //data = "#B1000"
+
+                    // data starting with the defined prefix, otherwised discard 
+                    if (data.StartsWith(dataReadPrefix))
+                    {
+
+                        // remove prefix from data and send it to be parsed
+                        data = data.Remove(0, dataReadPrefix.Length);
+
+                        //data = "1000"
+
+                        ParseData(data);
+
+                        float maximumValue = 1000.0f;
+                        if (communicator != null)
+                            maximumValue = (float)communicator.arduinoMaximumOutputValue;
+
+                        int value = 0;
+                        if (int.TryParse(data, out value) == true)
+                        {
+                            ratios[i] = value / maximumValue;
+                            ratios[i] = Mathf.Clamp01(ratios[i]);
+                            
+                        }
+                        else
+                            Debug.LogWarning("TryParse int from data " + data + " failed!");
+                    }
+                }
+            }
+            RecieveDataAsRatio02(ratios[0], ratios[1], ratios[2], ratios[3], ratios[4]);
+
         }
 
         /// <summary>
@@ -95,9 +135,13 @@ namespace WxTools.IO
         /// </summary>
         /// <param name="ratio">The ratio ranging from 0 to 1.0f</param>
         protected virtual void RecieveDataAsRatio01(float ratio)
+        
         {
         }
+        protected virtual void RecieveDataAsRatio02(float ratio1, float ratio2, float ratio3, float ratio4, float ratio5)
+        {
 
+        }
         /// <summary>
         /// Draw gizmos when selected in the Unity Editor
         /// </summary>

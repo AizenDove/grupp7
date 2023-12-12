@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using WxTools.IO;
 
-public class SerialRotation : SerialDataTransciever
+public class Gyro : SerialDataTransciever
 {
     [SerializeField]
     private Vector3 axis = Vector3.up;
@@ -23,5 +23,6 @@ public class SerialRotation : SerialDataTransciever
     protected override void RecieveDataAsRatio01(float ratio)
     {
         angle = ratio * maximumAngle;
+        //Debug.Log(ratio);
     }   
 }
