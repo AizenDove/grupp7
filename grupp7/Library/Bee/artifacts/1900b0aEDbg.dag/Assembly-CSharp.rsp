@@ -372,6 +372,8 @@
 "Assets/Scripts/Test/NFCObjectSpawner.cs"
 "Assets/Scripts/Test/RotateObject.cs"
 "Assets/WxTools/Example/Scripts/Gyro.cs"
+"Assets/WxTools/Example/Scripts/MoveDown.cs"
+"Assets/WxTools/Example/Scripts/MoveUp.cs"
 "Assets/WxTools/Example/Scripts/SerialMover.cs"
 "Assets/WxTools/Example/Scripts/SerialRotation.cs"
 "Assets/WxTools/Example/Scripts/SerialSender.cs"

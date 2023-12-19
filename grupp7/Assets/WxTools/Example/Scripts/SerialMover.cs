@@ -20,7 +20,7 @@ public class SerialMover :  SerialDataTransciever
 	// Update is called once per frame
 	void Update ()
     {
-        transform.position = Vector3.Lerp(orgPos, orgPos + Vector3.up * 4.0f, ratio);
+        transform.position = Vector3.Lerp(orgPos, orgPos + Vector3.forward * 4.0f, ratio);
         
 	}
 
